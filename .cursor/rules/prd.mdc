@@ -44,7 +44,7 @@ alwaysApply: true
 	1. Add placeholders to .env.example
 	2. Update env.server
 		- only add the API keys for the server
-	3. Ask me to add the real keys to .env, and then deploy them to Fly with `fly secrets set`
+	3. Update .env with the real keys
 3. Prepare database
 	1. Add db models
 		- **Restaurants** (cached from API):
@@ -56,6 +56,8 @@ alwaysApply: true
 			- id, userId, dinnerGroupId, createdAt
 	2. Run the migrations
 	3. Run `npx prisma db seed` (don't edit the seed file, just run it)
+4. Update our email domain in `utils/email.server` to enable emails
+
 
 ## Phase 2 - APIs
 
@@ -202,7 +204,8 @@ And remove any `json({})` wrappers
 
 # Phase 6 - Deployment
 
-1. Push to GitHub to deploy
+1. Deploy the required Resend and Google keys from .env to Fly with `fly secrets set`
+2. Push to GitHub to deploy
 2. Connect to custom domain
 	- Domain is dinnernotonyourown.com
 	- Domain is provided by CloudFlare
